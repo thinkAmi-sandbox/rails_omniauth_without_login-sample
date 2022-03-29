@@ -1,0 +1,1 @@
+# rails_omniauth_without_login-sample
