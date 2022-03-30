@@ -1,0 +1,24 @@
+<h1>Homes#index</h1>
+
+<% if user_signed_in? %>
+  <p><%= current_user.email %>でログインしています</p>
+
+  <% if @access_token %>
+    <p>初回の認可処理も実施済です</p>
+
+    <% if @is_renew %>
+      <p>アクセストークンの更新を行いました</p>
+    <% end %>
+  <% else %>
+    <p>認可処理がされていないので、以下のボタンを押して認可処理を行ってください</p>
+    <%= form_tag('/auth/my_as', method: 'post') do %>
+      <button type='submit'>認可処理をする</button>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <a href="<%= new_user_session_path %>">ログインする</a>
+<% end %>
+
+<hr>
+<p>memo: <%= @memos %></p>
